@@ -16,7 +16,7 @@ var (
 // Base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Version: "0.0.1",
-	Use:     "g4teway",
+	Use:     "gateway4",
 	Short:   "Expose any TCP service to the internet",
 	Long:    `Expose any web application, database, or other TCP service to the internet with a single command.`,
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
