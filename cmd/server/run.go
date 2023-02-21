@@ -1,6 +1,8 @@
 package main
 
 import (
+	"github.com/corp4/gateway4/internal/server"
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
@@ -37,7 +39,9 @@ var runCmd = &cobra.Command{
 	Long:       `Initialize the server and start listening for incoming connections.`,
 	SuggestFor: []string{"serve", "start"},
 	Run: func(cmd *cobra.Command, args []string) {
-
+		api := server.NewAPI()
+		log.Infof("Starting API server on %s:%d", host, apiPort)
+		api.ListenAndServe(":8080")
 	},
 }
 
@@ -51,10 +55,10 @@ func init() {
 	runCmd.Flags().IntVarP(&httpsPort, "https-port", "P", 443, "HTTPS port to listen on")
 	runCmd.Flags().StringVarP(&certPath, "cert", "c", "", "Path to TLS certificate")
 	runCmd.Flags().StringVarP(&keyPath, "key", "k", "", "Path to TLS key")
-	runCmd.MarkFlagRequired("cert")
-	runCmd.MarkFlagRequired("key")
+	// runCmd.MarkFlagRequired("cert")
+	// runCmd.MarkFlagRequired("key")
 
 	runCmd.Flags().IntVarP(&sshPort, "ssh-port", "s", 22, "SSH port to listen on")
 	runCmd.Flags().StringVarP(&sshKeyPath, "ssh-key", "K", "", "Path to SSH key")
-	runCmd.MarkFlagRequired("ssh-key")
+	// runCmd.MarkFlagRequired("ssh-key")
 }
