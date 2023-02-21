@@ -55,13 +55,13 @@ func (c *Client) Disconnect(p *protocol.Disconnect) error {
 
 // TunnelAccept is called when a tunnel accept packet is received.
 func (c *Client) TunnelAccept(p *protocol.TunnelAccept) error {
-	c.Debugf("Received tunnel accept: %d", p.Host)
+	c.Debugf("Received tunnel accept: %s", p.Host)
 	return nil
 }
 
 // NewStream is called when a new stream packet is received.
 func (c *Client) NewStream(p *protocol.NewStream) error {
-	c.Debugf("Received new stream: %d", p.UUID)
+	c.Debugf("Received new stream: %s", p.UUID)
 	return nil
 }
 
